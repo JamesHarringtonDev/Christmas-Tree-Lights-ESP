@@ -1,6 +1,7 @@
 import boto3
 
 client = boto3.client('route53')
+REGION = 'eu-west-2'
 
 def updateRoute53Record(hosted_zone_id, record_name, my_ip):
     try:
@@ -14,7 +15,6 @@ def updateRoute53Record(hosted_zone_id, record_name, my_ip):
                         "ResourceRecordSet": {
                             "Name": record_name,
                             "Type": "A",
-                            "Region": "eu-west-2",
                             "TTL": 180,
                             "ResourceRecords": [
                                 {
@@ -26,5 +26,6 @@ def updateRoute53Record(hosted_zone_id, record_name, my_ip):
                 ]
             }
         )
+
     except Exception as e:
-        print("What the fuck is this shit?")
+        print(e)
