@@ -3,7 +3,7 @@ from sqlite3 import Error
 import requests
 import os.path
 import os
-import datetime
+from datetime import date
 
 
 ENVS = ['USERNAME']
@@ -21,8 +21,11 @@ def create_connection(db_file):
 
 
 def create_ip(conn, ip):
-    data = [ip]
-    sql = "INSERT INTO ip(ip) VALUES(?)"
+    today = date.today()
+    print(today)
+    data = [ip, str(today), "fil"]
+    print(data)
+    sql = "INSERT INTO ip(ip, date, name) VALUES(?,?,?)"
     cur = conn.cursor()
     cur.execute(sql, data)
     conn.commit()
