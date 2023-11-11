@@ -50,7 +50,7 @@ def create_db():
                                          name text NOT NULL
                                      ); """
 
-    db = r"ip.db"
+    db = r"ip.sqlite"
     conn = create_connection(db)
     c = conn.cursor()
     try:
@@ -76,7 +76,7 @@ def main():
     if not username:
         raise Exception("RCT_USERNAME env variable  not found")
 
-    database = r"ip.db"
+    database = r"ip.sqlite"
     if not db_exists():
         status = create_db()
         if not status:
